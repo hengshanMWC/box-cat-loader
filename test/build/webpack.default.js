@@ -5,13 +5,16 @@ module.exports = {
   mode: 'development',
   devtool:'source-map',
   entry: path.join(__dirname, ITEM_PATH, 'index.js'),
-  output: {
-    path: path.join(__dirname, ITEM_PATH, 'dist'),
-  },
+  // output: {
+  //   path: path.join(__dirname, ITEM_PATH, 'dist'),
+  // },
   module: {
     rules: [
       {
         test: /\.js/,
+        include: [
+          path.join(__dirname, ITEM_PATH)
+        ],
         use: path.join(__dirname, '../../lib/index.js')
       }
     ]

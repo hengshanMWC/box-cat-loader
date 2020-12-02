@@ -1,6 +1,6 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const ITEM_PATH = '../apis/module'
+const ITEM_PATH = '../apis/index'
 module.exports = {
   mode: 'development',
   devtool:'source-map',
@@ -13,17 +13,12 @@ module.exports = {
       {
         test: /\.js/,
         include: [
-          path.join(__dirname, ITEM_PATH)
+          path.join(__dirname, ITEM_PATH, 'index.js')
         ],
         // extend: [
         //   path.join(__dirname, ITEM_PATH, 'index.js')
         // ],
-        use: {
-          loader: path.join(__dirname, '../../lib/index.js'),
-          options: {
-            httpPath: path.join(__dirname, ITEM_PATH, 'index.js')
-          }
-        }
+        use: path.join(__dirname, '../../lib/index.js')
       }
     ]
   },

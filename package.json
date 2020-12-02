@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:default": "webpack --config test/build/webpack.default.js"
+    "build:default": "webpack --config test/build/webpack.default.js",
+    "build:index": "webpack --config test/build/webpack.index.js",
+    "build:module": "webpack --config test/build/webpack.module.js"
   },
   "keywords": [
     "box-cat",

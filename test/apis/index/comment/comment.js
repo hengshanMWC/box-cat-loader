@@ -1,3 +1,7 @@
 export default {
-  postComment: 
+  postComment: 'comment',
+  getCommentList: 'comment',
+  getComment: 'comment/:id',
+  putComment: 'comment/:id',
+  deleteComment: 'comment/:id',
 }

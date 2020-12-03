@@ -4,24 +4,24 @@ const ITEM_PATH = '../apis/module'
 module.exports = {
   mode: 'development',
   devtool:'source-map',
-  entry: path.join(__dirname, ITEM_PATH, 'index.js'),
+  entry: path.resolve(__dirname, ITEM_PATH, 'index.js'),
   output: {
-    path: path.join(__dirname, ITEM_PATH, 'dist'),
+    path: path.resolve(__dirname, ITEM_PATH, 'dist'),
   },
   module: {
     rules: [
       {
         test: /\.js/,
         include: [
-          path.join(__dirname, ITEM_PATH)
+          path.resolve(__dirname, ITEM_PATH)
         ],
         // extend: [
-        //   path.join(__dirname, ITEM_PATH, 'index.js')
+        //   path.resolve(__dirname, ITEM_PATH, 'index.js')
         // ],
         use: {
-          loader: path.join(__dirname, '../../lib/index.js'),
+          loader: path.resolve(__dirname, '../../lib/index.js'),
           options: {
-            httpPath: path.join(__dirname, ITEM_PATH, 'index.js')
+            httpPath: path.resolve(__dirname, ITEM_PATH, 'index.js')
           }
         }
       }
@@ -29,7 +29,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [path.join(__dirname, ITEM_PATH, 'dist')]
+      cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, ITEM_PATH, 'dist')]
     }),
   ]
 }

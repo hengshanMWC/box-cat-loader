@@ -2,9 +2,10 @@
   "name": "box-cat-loader",
   "version": "1.0.0",
   "description": "配合box-cat按需加载的前端接口最终解决方案",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build:test": "npm run build:index & npm run build:default",
     "build:default": "webpack --config test/build/webpack.default.js",
     "build:index": "webpack --config test/build/webpack.index.js",
     "build:module": "webpack --config test/build/webpack.module.js"

@@ -12,7 +12,7 @@ import data from './data'
 const http = createApis(data, axios)
 export default http
 ```
-我们是通过整一个export default导出去。但是有时候我们希望export这种按需加载并且来源明确的引用，但是如果我们通过工厂生成后再一个个export出去，未免也太low了。所以想着写一个loader来在编译时自动export出去
+我们是通过一整个export default导出去。但是有时候我们更希望export这种按需加载并且来源明确的引用，但是如果我们通过工厂生成后再一个个export出去，未免也太low了。所以想着写一个loader来在编译时自动export出去
 
 # Introduction
 通过include指定出口文件
@@ -40,7 +40,9 @@ module.exports =  {
 }
 ```
 # Rule
-数据只能通过默认导出或者声明变量，而且值的格式只能是object{},还是不清楚的，可以倒test目录下查看demo
+数据只能通过默认导出或者声明变量，而且值的格式只能是object{}。
+
+还是不清楚的，可以到test目录下查看demo
 ```js
 // 例子
 // 声明变量

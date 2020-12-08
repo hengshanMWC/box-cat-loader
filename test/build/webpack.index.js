@@ -15,9 +15,6 @@ module.exports = {
         include: [
           path.resolve(__dirname, ITEM_PATH, 'index.js')
         ],
-        // extend: [
-        //   path.resolve(__dirname, ITEM_PATH, 'index.js')
-        // ],
         use: path.resolve(__dirname, '../../lib/index.js')
       }
     ]

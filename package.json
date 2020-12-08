@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:test": "npm run build:index & npm run build:default",
     "build:default": "webpack --config test/build/webpack.default.js",
-    "build:index": "webpack --config test/build/webpack.index.js",
-    "build:module": "webpack --config test/build/webpack.module.js"
+    "build:index": "webpack --config test/build/webpack.index.js"
   },
   "keywords": [
     "box-cat",

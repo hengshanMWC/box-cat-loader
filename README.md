@@ -3,7 +3,7 @@
 # Scene
 [强行震惊！竟然解决了请求接口中的冗余]('https://juejin.cn/post/6850418120830976007')
 
-**box-cat**是一个接口工厂函数，通过object的形似生成接口函数
+**box-cat**是一个接口工厂函数，通过data数据(object)加工成产品http
 ```js
 // apis/index.js
 import { createApis } from 'box-cat'
@@ -12,16 +12,22 @@ import data from './data'
 const http = createApis(data, axios)
 export default http
 ```
-我们是通过一整个export default导出去。但是有时候我们更希望export这种按需加载并且来源明确的引用，但是如果我们通过工厂生成后再一个个export出去，未免也太low了。所以想着写一个loader来在编译时自动export出去
+我们是通过export default一整个导出去。但是有时候我们更希望用export这种按需加载并且来源明确来引用，但是如果我们通过工厂生成后再一个个export出去，未免也太low了。所以想着写一个loader来在编译时自动export出去
 ```js
+// apis/data.js
+export default {
+  getUserInfo: 'userInfo',
+  putUserInfo: 'userInfo'
+} 
+// apis/index.js
 import { createApis } from 'box-cat'
 import axios from 'axios'
 import data from './data'
 const http = createApis(data, axios)
 export default http
 // box-cat-loader就会根据data来添加export
-export const data数据的值1 = http.data数据的值1
-export const data数据的值2 = http.data数据的值2
+export const getUserInfo = http.getUserInfo
+export const putUserInfo = http.putUserInfo
 ```
 
 # Introduction
@@ -34,29 +40,31 @@ module.exports = {
       {
         test: /\.js$/,
         include: [
-          path.resolve(__dirname, 'apis/index.js')
+          path.resolve(__dirname, ITEM_PATH, 'index.js')
         ],
-        use: 'box-cat-loader'
+        use: {
+          loader: path.resolve(__dirname, '../../lib/index.js'),
+          options: { // 默认的options如下
+            data: 'data', // 数据变量名
+            http: 'http' // 产品变量名
+          }
+        }
       }
     ]
   },
 }
 ```
-```js
-// box-cat-loader的默认options
-module.exports =  {
-  data: 'data', // 数据变量名
-  http: 'http' // 需要export的变量名
-}
-```
+
 # Rule
 数据只能通过默认导出或者声明变量，而且值的格式只能是object{}。
 
 还是不清楚的，可以到test目录下查看demo
 ```js
-// 例子
+// 例子1
 // 声明变量
 const data = {} // let,var也可以
+
+// 例子2
 // data.js
 export default {}
 // index.js

@@ -15,7 +15,13 @@ module.exports = {
         include: [
           path.resolve(__dirname, ITEM_PATH, 'index.js')
         ],
-        use: path.resolve(__dirname, '../../lib/index.js')
+        use: {
+          loader: path.resolve(__dirname, '../../lib/index.js'),
+          options: {
+            data: 'values',
+            http: 'https'
+          }
+        }
       }
     ]
   },

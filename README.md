@@ -13,6 +13,16 @@ const http = createApis(data, axios)
 export default http
 ```
 我们是通过一整个export default导出去。但是有时候我们更希望export这种按需加载并且来源明确的引用，但是如果我们通过工厂生成后再一个个export出去，未免也太low了。所以想着写一个loader来在编译时自动export出去
+```js
+import { createApis } from 'box-cat'
+import axios from 'axios'
+import data from './data'
+const http = createApis(data, axios)
+export default http
+// box-cat-loader就会根据data来添加export
+export const data数据的值1 = http.data数据的值1
+export const data数据的值2 = http.data数据的值2
+```
 
 # Introduction
 通过include指定出口文件

@@ -1,6 +1,6 @@
 {
   "name": "box-cat-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "配合box-cat按需加载的前端接口最终解决方案",
   "main": "lib/index.js",
   "scripts": {

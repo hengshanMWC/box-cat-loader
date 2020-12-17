@@ -25,6 +25,11 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      test: path.resolve(__dirname, '../../test'),
+    }
+  },
   plugins: [
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, ITEM_PATH, 'dist')]

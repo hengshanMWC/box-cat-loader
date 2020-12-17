@@ -3,6 +3,8 @@
 # Scene
 [强行震惊！竟然解决了请求接口中的冗余]('https://juejin.cn/post/6850418120830976007')
 
+对于同类型的工厂产出来的object，如果每次手动export出去会很low，所以按这个思路写的一个自动添加epxort的loader
+
 **box-cat**是一个接口工厂函数，通过data数据(object)加工成产品http
 ```js
 // apis/index.js
@@ -12,7 +14,7 @@ import data from './data'
 const http = createApis(data, axios)
 export default http
 ```
-我们是通过export default一整个导出去。但是有时候我们更希望用export这种按需加载并且来源明确来引用，但是如果我们通过工厂生成后再一个个export出去，未免也太low了。所以想着写一个loader来在编译时自动export出去
+我们是通过export default一整个导出去。但是有时候我们更希望用export这种按需加载并且来源明确去引用，但是如果我们通过工厂生成后再一个个export出去，未免也太low了。所以想着写一个loader来在编译时自动export出去
 ```js
 // apis/data.js
 export default {
@@ -29,7 +31,7 @@ export default http
 export const getUserInfo = http.getUserInfo
 export const putUserInfo = http.putUserInfo
 ```
-
+数据太多的话，可以按模块拆分成目录，loader会根据你的import路径去找数据，规定模块数据源为export default {}
 # Introduction
 通过include指定出口文件
 ```js
@@ -56,8 +58,8 @@ module.exports = {
 ```
 
 # Rule
-数据只能通过默认导出或者声明变量，而且值的格式只能是object{}。
-
+数据只能通过默认导出或者声明变量，而且值的格式只能是{}。
+支持数据别名引入
 还是不清楚的，可以到test目录下查看demo
 ```js
 // 例子1

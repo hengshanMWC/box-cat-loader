@@ -1,38 +1,22 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const webpackOptions = require('./options.js')
 const ITEM_PATH = '../apis/index'
-module.exports = {
-  mode: 'development',
-  devtool:'source-map',
-  entry: path.resolve(__dirname, ITEM_PATH, 'index.js'),
-  output: {
-    path: path.resolve(__dirname, ITEM_PATH, 'dist'),
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        include: [
-          path.resolve(__dirname, ITEM_PATH, 'index.js')
-        ],
-        use: {
-          loader: path.resolve(__dirname, '../../lib/index.js'),
-          options: {
-            data: 'values',
-            http: 'https'
-          }
-        }
-      }
-    ]
-  },
-  resolve: {
-    alias: {
-      test: path.resolve(__dirname, '../../test'),
-    }
-  },
-  plugins: [
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, ITEM_PATH, 'dist')]
-    }),
-  ]
+const options = webpackOptions(ITEM_PATH, {
+  loader: path.resolve(__dirname, '../../lib/index.js'),
+  options: {
+    data: 'values',
+    http: 'https'
+  }
+})
+options.resolve = {
+  alias: {
+    test: path.resolve(__dirname, '../../test'),
+  }
 }
+options.plugins = [
+  new CleanWebpackPlugin({
+    cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, ITEM_PATH, 'dist')]
+  })
+]
+module.exports = options

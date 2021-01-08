@@ -4,6 +4,5 @@ npm-debug.log
 .idea/
 yarn-error.log
 yarn.lock
-yxlConfig.json
 dist/
-.vscode
+coverage
